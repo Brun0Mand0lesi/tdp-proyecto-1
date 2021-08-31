@@ -15,7 +15,9 @@ import java.awt.Image;
 
 import javax.swing.JTextPane;
 import java.awt.Toolkit;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 import javax.swing.ImageIcon;
 
@@ -114,7 +116,11 @@ public class SimplePresentationScreen extends JFrame {
 		contentPane.add(foto);
 		
 		JLabel fecha = new JLabel("New label");	
-		fecha.setText("Esta ventana fue generada el: "+String.valueOf(new Date()));
+		contentPane.add(fecha);
+	    LocalDateTime currentDate = LocalDateTime.now();
+	    DateTimeFormatter day = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+	    fecha.setText("Esta ventana fue generada el día: " + day.format (currentDate) + " a las "+ time.format(currentDate));
 		fecha.setBounds(5, 223, 444, 14);
 		contentPane.add(fecha);
 	}
